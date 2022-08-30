@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: discord-vc-enter-exit-bot
+  name: discord-vc-enter-exit-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: discord-vc-enter-exit-bot
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: discord-vc-enter-exit-bot
+    spec:
+      containers:
+        - image: ghcr.io/kgtkr/discord-vc-enter-exit-bot:d04ae99e18c076374ffc8d55e84db6d0d7e15dc7
+          name: discord-vc-enter-exit-bot
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "15Mi"
+          volumeMounts:
+            - mountPath: /var/discord-vc-enter-exit-bot/config
+              name: discord-vc-enter-exit-bot-config
+              readOnly: true
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - ln
+                  - -s
+                  - /var/discord-vc-enter-exit-bot/config/config.json
+                  - /home/app/config.json
+      restartPolicy: Always
+      volumes:
+        - name: discord-vc-enter-exit-bot-config
+          secret:
+            secretName: discord-vc-enter-exit-bot-config

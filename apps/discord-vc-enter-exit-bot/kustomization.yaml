@@ -1,0 +1,5 @@
+namespace: discord-vc-enter-exit-bot
+resources:
+  - discord-vc-enter-exit-bot.yaml
+  - discord-vc-enter-exit-bot-config.yaml
+  - ns.yaml

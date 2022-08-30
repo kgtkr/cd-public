@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: discord-vc-enter-exit-bot
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: public-cd-apps
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    path: kgtkr/discord-vc-enter-exit-bot
+    repoURL: https://github.com/kgtkr/infra
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
