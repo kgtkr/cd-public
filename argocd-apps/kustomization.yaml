@@ -1,2 +1,3 @@
 resources:
   - discord-vc-enter-exit-bot.yaml
+  - minecraft-server.yaml
