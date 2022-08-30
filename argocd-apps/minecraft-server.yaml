@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minecraft-server
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: public-cd-apps
+  source:
+    chart: minecraft
+    repoURL: https://itzg.github.io/minecraft-server-charts/
+    targetRevision: 3.8.1
+    helm:
+      releaseName: minecraft-server
+      values: |
+        minecraftServer:
+          motd: "てけらさーばー！！"
+          eula: "true"
+          version: "1.18.1"
+          difficulty: "normal"
+          whitelist: "kgtkr,yustier,swawa_yu"
+          ops: "kgtkr"
+          serviceType: "LoadBalancer"
+        persistence:
+          storageClass: longhorn
+          dataDir:
+            enabled: true
+            Size: 5Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minecraft-server
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: minecraft-server
