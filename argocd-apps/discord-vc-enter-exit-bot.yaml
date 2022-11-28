@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: apps/discord-vc-enter-exit-bot
-    repoURL: https://github.com/kgtkr/infra
+    repoURL: https://github.com/kgtkr/public-cd
     targetRevision: HEAD
   syncPolicy:
     automated:
