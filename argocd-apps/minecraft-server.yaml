@@ -23,10 +23,10 @@ spec:
           ops: "kgtkr"
           serviceType: "LoadBalancer"
         persistence:
-          storageClass: longhorn
+          storageClass: "-"
           dataDir:
             enabled: true
-            Size: 5Gi
+            existingClaim: minecraft-server-data
   destination:
     server: https://kubernetes.default.svc
     namespace: minecraft-server
@@ -35,3 +35,16 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: minecraft-server
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-server-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: minecraft-server
