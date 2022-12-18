@@ -19,7 +19,7 @@ spec:
           eula: "true"
           version: "1.19.3"
           difficulty: "normal"
-          whitelist: "kgtkr,yustier,swawa_yu"
+          whitelist: "kgtkr,yustier,swawa_yu,f0reach"
           ops: "kgtkr"
           serviceType: "LoadBalancer"
         persistence:
