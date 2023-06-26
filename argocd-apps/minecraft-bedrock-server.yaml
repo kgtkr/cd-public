@@ -20,8 +20,8 @@ spec:
           version: "1.20.1.02"
           difficulty: "normal"
           whitelist: true
-          whitelistUsers: "kgtkr"
-          ops: "kgtkr"
+          whitelistUsers: "kgtkr,dakuba0203"
+          ops: "2535422252797141"
           serviceType: "LoadBalancer"
         persistence:
           storageClass: "-"
