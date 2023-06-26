@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minecraft-bedrock-server
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: public-cd-apps
+  source:
+    chart: minecraft-bedrock
+    repoURL: https://itzg.github.io/minecraft-server-charts/
+    targetRevision: 2.1.0
+    helm:
+      releaseName: minecraft-bedrock-server
+      values: |
+        minecraftServer:
+          serverName: "てけら統合版さーばー！！"
+          eula: "true"
+          version: "1.20.1.02"
+          difficulty: "normal"
+          whitelist: true
+          whitelistUsers: "kgtkr"
+          ops: "kgtkr"
+          serviceType: "LoadBalancer"
+        persistence:
+          storageClass: "-"
+          dataDir:
+            enabled: true
+            existingClaim: minecraft-bedrock-server-data
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minecraft-bedrock-server
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: minecraft-bedrock-server
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-bedrock-server-data
+  namespace: minecraft-bedrock-server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: minecraft-bedrock-server
