@@ -14,10 +14,9 @@ spec:
     helm:
       releaseName: minecraft-server
       values: |
-        replicaCount: 0
         minecraftServer:
           motd: "てけらさーばー！！"
-          eula: "true"
+          eula: "FALSE" # 一時停止
           version: "1.19.3"
           difficulty: "normal"
           whitelist: "kgtkr,yustier,swawa_yu,f0reach"
