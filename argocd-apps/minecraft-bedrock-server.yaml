@@ -17,7 +17,7 @@ spec:
         minecraftServer:
           serverName: "てけら統合版さーばー！！"
           eula: "true"
-          version: "1.20.1.02"
+          version: "1.20.13.01"
           difficulty: "normal"
           whitelist: true
           whitelistUsers: "kgtkr,dakuba0203,chiisan0201,yunyuxu,masukanya77,syoking9754,NoahMizuki0916,karoukittysama,thunder1324654,AwfulRat2937254"
