@@ -14,6 +14,8 @@ spec:
     helm:
       releaseName: minecraft-bedrock-server
       values: |
+        image:
+          tag: 2023.7.1
         minecraftServer:
           serverName: "てけら統合版さーばー！！"
           eula: "true"
