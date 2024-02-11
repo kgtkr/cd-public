@@ -25,7 +25,7 @@ spec:
           whitelistUsers: "kgtkr,yunyuxu,masukanya77,NoahMizuki0916"
           ops: "2535422252797141"
           serviceType: "LoadBalancer"
-          levelSeed: -8153070156624695908
+          levelSeed: "-8153070156624695908"
         persistence:
           storageClass: "-"
           dataDir:
