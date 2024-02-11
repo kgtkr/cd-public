@@ -15,7 +15,7 @@ spec:
       releaseName: minecraft-bedrock-server-idv
       values: |
         image:
-          tag: 2024.1.0
+          tag: 2023.8.1
         minecraftServer:
           serverName: "てけらの第五鯖まいくらわーるど"
           eula: "true"
