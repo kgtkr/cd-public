@@ -16,7 +16,7 @@ spec:
       values: |
         minecraftServer:
           motd: "てけらさーばー！！"
-          eula: "FALSE" # 一時停止
+          eula: "TRUE"
           version: "1.19.3"
           difficulty: "normal"
           whitelist: "kgtkr,yustier,swawa_yu,f0reach"
