@@ -10,7 +10,7 @@ spec:
   source:
     chart: minecraft-bedrock
     repoURL: https://itzg.github.io/minecraft-server-charts/
-    targetRevision: 2.1.0
+    targetRevision: 2.4.0
     helm:
       releaseName: minecraft-bedrock-server
       values: |
@@ -30,6 +30,10 @@ spec:
           dataDir:
             enabled: true
             existingClaim: minecraft-bedrock-server-data
+        serviceAnnotations:
+          metallb.universe.tf/allow-shared-ip: "true"
+          metallb.universe.tf/address-pool: public-ips
+          external-dns.alpha.kubernetes.io/hostname: minecraft-bedrock.kgtkr.net
   destination:
     server: https://kubernetes.default.svc
     namespace: minecraft-bedrock-server
