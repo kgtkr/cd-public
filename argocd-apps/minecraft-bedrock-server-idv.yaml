@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minecraft-bedrock-server-idv
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: public-cd-apps
+  source:
+    chart: minecraft-bedrock
+    repoURL: https://itzg.github.io/minecraft-server-charts/
+    targetRevision: 2.4.0
+    helm:
+      releaseName: minecraft-bedrock-server-idv
+      values: |
+        image:
+          tag: 2024.2.2
+        minecraftServer:
+          serverName: "てけらの第五鯖まいくらわーるど"
+          eula: "true"
+          version: "1.20.61.01"
+          difficulty: "easy"
+          whitelist: true
+          whitelistUsers: "kgtkr,yunyuxu,masukanya77,NoahMizuki0916"
+          ops: "2535422252797141"
+          serviceType: "LoadBalancer"
+        persistence:
+          storageClass: "-"
+          dataDir:
+            enabled: true
+            existingClaim: minecraft-data
+        serviceAnnotations:
+          metallb.universe.tf/allow-shared-ip: "true"
+          metallb.universe.tf/address-pool: public-ips
+          external-dns.alpha.kubernetes.io/hostname: mc-idv.kgtkr.net
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minecraft-bedrock-server-idv
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: minecraft-bedrock-server-idv
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-data
+  namespace: minecraft-bedrock-server-idv
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: minecraft-bedrock-server-idv

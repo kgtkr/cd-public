@@ -2,3 +2,4 @@ resources:
   - discord-vc-enter-exit-bot.yaml
   # - minecraft-server.yaml
   # - minecraft-bedrock-server.yaml
+  - minecraft-bedrock-server-idv.yaml
