@@ -26,6 +26,7 @@ spec:
           ops: "2535422252797141"
           serviceType: "LoadBalancer"
           levelSeed: "-8153070156624695908"
+          tickDistance: "8"
         persistence:
           storageClass: "-"
           dataDir:
