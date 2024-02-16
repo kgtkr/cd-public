@@ -21,12 +21,15 @@ spec:
           eula: "true"
           version: "1.20.61.01"
           difficulty: "easy"
-          whitelist: true
-          whitelistUsers: "kgtkr,yunyuxu,masukanya77,NoahMizuki0916,mahi1745"
+          whitelist: true # 多分いらない
+          whitelistUsers: "kgtkr,yunyuxu,masukanya77,NoahMizuki0916,mahi1745,Wasabi3713"
           ops: "2535422252797141"
           serviceType: "LoadBalancer"
           levelSeed: "-8153070156624695908"
           tickDistance: "8"
+        extraEnvs:
+          - name: "ALLOW_LIST"
+            value: "true"
         persistence:
           storageClass: "-"
           dataDir:

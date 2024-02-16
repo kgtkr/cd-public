@@ -25,6 +25,9 @@ spec:
           whitelistUsers: "kgtkr,dakuba0203,chiisan0201,yunyuxu,masukanya77,syoking9754,NoahMizuki0916,karoukittysama,thunder1324654,AwfulRat2937254"
           ops: "2535422252797141"
           serviceType: "LoadBalancer"
+        extraEnvs:
+          - name: "ALLOW_LIST"
+            value: "true"
         persistence:
           storageClass: "-"
           dataDir:
