@@ -26,7 +26,7 @@ spec:
           ops: "2535422252797141"
           serviceType: "LoadBalancer"
           levelSeed: "-8153070156624695908"
-          tickDistance: "8"
+          tickDistance: "4"
         extraEnvs:
           - name: "ALLOW_LIST"
             value: "true"
