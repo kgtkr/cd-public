@@ -7,23 +7,18 @@ spec:
     spec:
       containers:
         - name: unmined
-          image: alpine:3.19.1
+          image: ghcr.io/kgtkr/unmined-docker:20240229204203901-495be9c
           command:
             - "sh"
             - "-c"
             - |
-              cd /unmined
-              DIR="unmined-cli_0.19.31-dev_linux-x64"
-              wget -O unmined.tar.gz "https://unmined.net/download/unmined-cli-linux-x64-dev/?tmstv=1709236218"
-              tar -xvf unmined.tar.gz
-              # $DIR/unmined-cli web render --world="%APPDATA%\.minecraft\saves\New World" --output="%USERPROFILE%\Desktop\MyMap"
               sleep infinity
           volumeMounts:
             - mountPath: /data
               name: datadir
               readOnly: true
-            - mountPath: /unmined
-              name: unmined
+            - mountPath: /unmined-out
+              name: unmined-out
       volumes:
         - name: unmined
           emptyDir: {}
