@@ -10,7 +10,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    path: apps/discord-vc-enter-exit-bot
+    path: kgtkr/discord-vc-enter-exit-bot
     repoURL: https://github.com/kgtkr/public-cd
     targetRevision: HEAD
   syncPolicy:
