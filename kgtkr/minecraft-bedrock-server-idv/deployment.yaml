@@ -12,9 +12,15 @@ spec:
             - "sh"
             - "-c"
             - |
+              out () {
+                dimension=$1
+                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out/$dimension --dimension=$dimension --night --players
+                mv /unmined-out/$dimension/unmined.index.html /unmined-out/$dimension/index.html
+              }
               while true; do
-                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out
-                mv /unmined-out/unmined.index.html /unmined-out/index.html
+                out overworld
+                out nether
+                out end
                 sleep 60h
               done
           volumeMounts:
