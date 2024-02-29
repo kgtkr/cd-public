@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mc-router-bedrock
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: public-cd-apps
+  source:
+    path: kgtkr/mc-router-bedrock
+    repoURL: https://github.com/kgtkr/public-cd
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mc-router-bedrock
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

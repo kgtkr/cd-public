@@ -3,3 +3,4 @@ resources:
   # - minecraft-server.yaml
   # - minecraft-bedrock-server.yaml
   - minecraft-bedrock-server-idv.yaml
+  - mc-router-bedrock.yaml
