@@ -15,10 +15,10 @@ helmCharts:
       minecraftRouter:
         mappings:
           - externalHostname: minecraft-bedrock.kgtkr.net
-            host: ""
+            host: minecraft-bedrock-server-minecraft-bedrock.minecraft-bedrock-server.svc.cluster.local
             port: 19132
           - externalHostname: mc-idv.kgtkr.net
-            host: ""
+            host: minecraft-bedrock-server-idv-minecraft-bedrock.minecraft-bedrock-server-idv.svc.cluster.local
             port: 19132
       minecraftServer:
         serverName: "てけらの第五鯖まいくらわーるど"
