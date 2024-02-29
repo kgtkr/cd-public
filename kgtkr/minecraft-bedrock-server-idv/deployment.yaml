@@ -7,14 +7,14 @@ spec:
     spec:
       containers:
         - name: unmined
-          image: busybox:1.36.1-glibc
+          image: alpine:3.19.1
           command:
             - "sh"
             - "-c"
             - |
               cd /unmined
               DIR="unmined-cli_0.19.31-dev_linux-x64"
-              wget -o unmined.tar.gz "https://unmined.net/download/unmined-cli-linux-x64-dev/?tmstv=1709236218"
+              wget -O unmined.tar.gz "https://unmined.net/download/unmined-cli-linux-x64-dev/?tmstv=1709236218"
               tar -xvf unmined.tar.gz
               # $DIR/unmined-cli web render --world="%APPDATA%\.minecraft\saves\New World" --output="%USERPROFILE%\Desktop\MyMap"
               sleep infinity
