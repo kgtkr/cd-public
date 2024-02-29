@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-bedrock-server-idv-minecraft-bedrock
+spec:
+  template:
+    spec:
+      containers:
+        - name: unmined
+          image: ubuntu:22.04
+          command:
+            - "bash"
+            - "-c"
+            - |
+              apt update
+              apt install -y wget
+
+              DIR="unmined-cli_0.19.31-dev_linux-x64"
+              wget -o unmined.tar.gz https://unmined.net/download/unmined-cli-linux-x64-dev/?tmstv=1709236218
+              tar -xvf unmined.tar.gz
+              # $DIR/unmined-cli web render --world="%APPDATA%\.minecraft\saves\New World" --output="%USERPROFILE%\Desktop\MyMap"
+              sleep infinity
+          volumeMounts:
+            - mountPath: /data
+              name: datadir

@@ -1,6 +1,7 @@
 resources:
   - pvc.yaml
-patchesStrategicMerge: []
+patchesStrategicMerge:
+  - deployment.yaml
 helmCharts:
   - repo: https://itzg.github.io/minecraft-server-charts/
     name: minecraft-bedrock
