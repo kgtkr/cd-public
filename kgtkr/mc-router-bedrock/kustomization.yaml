@@ -8,7 +8,7 @@ helmCharts:
     valuesInline:
       image:
         tag: 1.20.1
-      service:
+      services:
         minecraft:
           type: LoadBalancer
           port: 19132
