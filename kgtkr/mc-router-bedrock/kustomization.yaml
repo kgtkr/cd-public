@@ -2,6 +2,7 @@ patchesStrategicMerge:
   - svc.yaml
 helmCharts:
   - name: mc-router
+    namespace: mc-router-bedrock
     releaseName: mc-router-bedrock
     version: 1.0.0
     repo: https://itzg.github.io/minecraft-server-charts
