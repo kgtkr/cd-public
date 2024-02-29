@@ -24,6 +24,7 @@ spec:
           whitelist: true # 多分いらない
           whitelistUsers: "kgtkr,yunyuxu,masukanya77,NoahMizuki0916,mahi1745,Wasabi3713,NanayaAlice777,Ringosuneta,rizutapioka,syoking7428"
           ops: "2535422252797141"
+          serviceType: "LoadBalancer"
           levelSeed: "-8153070156624695908"
           tickDistance: "4"
         extraEnvs:
@@ -35,7 +36,9 @@ spec:
             enabled: true
             existingClaim: minecraft-data
         serviceAnnotations:
-          mc-router.itzg.me/externalServerName: mc-idv.kgtkr.net
+          metallb.universe.tf/allow-shared-ip: "true"
+          metallb.universe.tf/address-pool: public-ips
+          external-dns.alpha.kubernetes.io/hostname: mc-idv.kgtkr.net
   destination:
     server: https://kubernetes.default.svc
     namespace: minecraft-bedrock-server-idv

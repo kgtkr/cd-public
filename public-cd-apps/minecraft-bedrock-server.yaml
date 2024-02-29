@@ -24,6 +24,7 @@ spec:
           whitelist: true
           whitelistUsers: "kgtkr,dakuba0203,chiisan0201,yunyuxu,masukanya77,syoking9754,NoahMizuki0916,karoukittysama,thunder1324654,AwfulRat2937254"
           ops: "2535422252797141"
+          serviceType: "LoadBalancer"
         extraEnvs:
           - name: "ALLOW_LIST"
             value: "true"
@@ -33,7 +34,9 @@ spec:
             enabled: true
             existingClaim: minecraft-bedrock-server-data
         serviceAnnotations:
-          mc-router.itzg.me/externalServerName: minecraft-bedrock.kgtkr.net
+          metallb.universe.tf/allow-shared-ip: "true"
+          metallb.universe.tf/address-pool: public-ips
+          external-dns.alpha.kubernetes.io/hostname: minecraft-bedrock.kgtkr.net
   destination:
     server: https://kubernetes.default.svc
     namespace: minecraft-bedrock-server
