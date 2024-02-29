@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: unmined
-          image: ghcr.io/kgtkr/unmined-docker:20240229204203901-495be9c
+          image: ghcr.io/kgtkr/unmined-docker:20240229205511084-6f68e2f
           command:
             - "sh"
             - "-c"
