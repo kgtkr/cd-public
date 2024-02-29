@@ -1,5 +1,5 @@
-# patchesStrategicMerge:
-#  - svc.yaml
+patchesStrategicMerge:
+  - svc.yaml
 helmCharts:
   - name: mc-router
     releaseName: mc-router-bedrock
