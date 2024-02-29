@@ -9,7 +9,7 @@ spec:
         - name: unmined
           image: busybox:1.36.1-glibc
           command:
-            - "bash"
+            - "sh"
             - "-c"
             - |
               # apt update
