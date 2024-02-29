@@ -12,12 +12,24 @@ spec:
             - "sh"
             - "-c"
             - |
-              sleep infinity
+              while true; do
+                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out
+                mv /unmined-out/unmined.index.html /unmined-out/index.html
+                sleep 60h
+              done
           volumeMounts:
             - mountPath: /data
               name: datadir
               readOnly: true
             - mountPath: /unmined-out
+              name: unmined-out
+        - name: unmined-nginx
+          image: nginx:1.25.4
+          ports:
+            - containerPort: 80
+              name: unmined-nginx
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
               name: unmined-out
       volumes:
         - name: unmined-out

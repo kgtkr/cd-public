@@ -1,5 +1,6 @@
 resources:
   - pvc.yaml
+  - unmined-nginx.yaml
 patchesStrategicMerge:
   - deployment.yaml
 helmCharts:
