@@ -14,7 +14,7 @@ spec:
             - |
               out () {
                 dimension=$1
-                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out/$dimension --dimension=$dimension --night --players
+                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out/$dimension --dimension=$dimension -f
                 mv /unmined-out/$dimension/unmined.index.html /unmined-out/$dimension/index.html
               }
               while true; do
