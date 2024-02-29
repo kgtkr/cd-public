@@ -32,6 +32,8 @@ spec:
           dataDir:
             enabled: true
             existingClaim: minecraft-bedrock-server-data
+        serviceAnnotations:
+          mc-router.itzg.me/externalServerName: minecraft-bedrock.kgtkr.net
   destination:
     server: https://kubernetes.default.svc
     namespace: minecraft-bedrock-server
