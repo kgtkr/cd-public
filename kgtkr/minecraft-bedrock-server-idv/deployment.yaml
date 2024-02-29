@@ -20,5 +20,5 @@ spec:
             - mountPath: /unmined-out
               name: unmined-out
       volumes:
-        - name: unmined
+        - name: unmined-out
           emptyDir: {}
