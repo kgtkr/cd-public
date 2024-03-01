@@ -40,7 +40,7 @@ spec:
         - minecraft-bedrock-server-idv-minio-console.k3s.kgtkr.net
       secretName: minio-console-ingress-cert
   rules:
-    - host: mastodon-minio-console.k3s.kgtkr.net
+    - host: minecraft-bedrock-server-idv-minio-console.k3s.kgtkr.net
       http:
         paths:
           - path: /
