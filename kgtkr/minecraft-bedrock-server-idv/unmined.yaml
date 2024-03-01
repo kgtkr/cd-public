@@ -27,7 +27,7 @@ spec:
                   rclone sync minio:/unmined /data/unmined --fast-list
               volumeMounts:
                 - mountPath: /config/rclone
-                  name: rclone-config
+                  name: minio-secret
                   readOnly: true
                 - mountPath: /data/worlds
                   name: worlds
@@ -69,7 +69,7 @@ spec:
                   name: unmined
                   readOnly: true
                 - mountPath: /config/rclone
-                  name: rclone-config
+                  name: minio-secret
                   readOnly: true
           containers:
             - image: alpine:3.19
