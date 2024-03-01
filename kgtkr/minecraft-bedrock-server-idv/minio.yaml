@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    nginx.ingress.kubernetes.io/rewrite-target: /unmined
+    nginx.ingress.kubernetes.io/app-root: /unmined
 spec:
   ingressClassName: nginx
   tls:
