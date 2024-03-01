@@ -23,7 +23,7 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: unmined-web
+                name: minio
                 port:
                   name: s3
 ---
