@@ -9,43 +9,28 @@ spec:
         kubectl.kubernetes.io/default-container: minecraft-bedrock-server-idv-minecraft-bedrock
     spec:
       containers:
-        - name: unmined
-          image: ghcr.io/kgtkr/unmined-docker:20240229210113704-faaa3c8
+        - image: rclone/rclone:1.65
+          name: rclone
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "300Mi"
           command:
-            - "sh"
-            - "-c"
+            - /bin/sh
+            - -c
             - |
-              out () {
-                dimension=$1
-                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out/$dimension --dimension=$dimension --zoomin=-3 --imageformat=webp $2
-                mv /unmined-out/$dimension/unmined.index.html /unmined-out/$dimension/index.html
-              }
               while true; do
-                out overworld
-                out nether "--topY=80"
-                out end
-                sleep 12h
+                rclone -v sync /data/worlds minio:/worlds --fast-list
+                sleep 1h
               done
           volumeMounts:
+            - mountPath: /config/rclone
+              name: minio-secret
+              readOnly: true
             - mountPath: /data
               name: datadir
               readOnly: true
-            - mountPath: /unmined-out
-              name: unmined-out
-        - name: unmined-web
-          image: ghcr.io/static-web-server/static-web-server:2
-          ports:
-            - containerPort: 8080
-              name: unmined-web
-          env:
-            - name: SERVER_PORT
-              value: "8080"
-            - name: SERVER_ROOT
-              value: "/public"
-          volumeMounts:
-            - mountPath: /public
-              name: unmined-out
-              readOnly: true
       volumes:
-        - name: unmined-out
-          emptyDir: {}
+        - name: minio-secret
+          secret:
+            secretName: minio-secret

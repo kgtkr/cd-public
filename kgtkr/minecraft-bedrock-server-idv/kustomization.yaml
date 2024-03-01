@@ -1,6 +1,7 @@
 resources:
   - pvc.yaml
   - minio.yaml
+  - unmined.yaml
 patchesStrategicMerge:
   - deployment.yaml
 helmCharts:

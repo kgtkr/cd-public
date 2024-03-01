@@ -1,0 +1,87 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: unmined
+spec:
+  schedule: "0 8 * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          tolerations:
+            - key: "kubernetes.kgtkr.net/unreliable"
+              effect: "NoSchedule"
+          initContainers:
+            - image: rclone/rclone:1.65
+              name: download
+              resources:
+                requests:
+                  cpu: "10m"
+                  memory: "300Mi"
+              command:
+                - /bin/sh
+                - -euc
+                - |
+                  rclone sync minio:/worlds /data/worlds --fast-list
+                  rclone sync minio:/unmined /data/unmined --fast-list
+              volumeMounts:
+                - mountPath: /config/rclone
+                  name: rclone-config
+                  readOnly: true
+                - mountPath: /data/worlds
+                  name: worlds
+                - mountPath: /data/unmined
+                  name: unmined
+            - name: unmined
+              image: ghcr.io/kgtkr/unmined-docker:20240229210113704-faaa3c8
+              command:
+                - "sh"
+                - "-euc"
+                - |
+                  out () {
+                    dimension=$1
+                    ./unmined-cli web render --world=/data/worlds/level --output=/data/unmined/$dimension --dimension=$dimension --zoomin=-3 --imageformat=webp $2
+                    mv /data/unmined/$dimension/unmined.index.html /data/unmined/$dimension/index.html
+                  }
+                  out overworld
+                  out nether "--topY=80"
+                  out end
+              resources:
+                requests:
+                  cpu: "1500m"
+                  memory: "500Mi"
+              volumeMounts:
+                - mountPath: /data/worlds
+                  name: worlds
+                  readOnly: true
+                - mountPath: /data/unmined
+                  name: unmined
+            - name: upload
+              image: rclone/rclone:1.65
+              command:
+                - /bin/sh
+                - -euc
+                - |
+                  rclone sync /data/unmined minio:/unmined --fast-list
+              volumeMounts:
+                - mountPath: /data/unmined
+                  name: unmined
+                  readOnly: true
+                - mountPath: /config/rclone
+                  name: rclone-config
+                  readOnly: true
+          containers:
+            - image: alpine:3.19
+              name: nop
+              command:
+                - echo
+          volumes:
+            - name: worlds
+              emptyDir: {}
+            - name: unmined
+              emptyDir: {}
+            - name: minio-secret
+              secret:
+                secretName: minio-secret
+          restartPolicy: Never
