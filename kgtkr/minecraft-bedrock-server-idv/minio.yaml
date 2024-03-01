@@ -140,3 +140,14 @@ spec:
   encryptedData:
     MINIO_ROOT_USER: AgBFEk5Yiz8myv9y4rTxnY1KtSpVUWx2KRLusTrXLkA5rW34BS6v8S5jVjz+zIF67goZ1vbwlVGb5cbz0kRFDrah7aWJLcoWbBAgbEmWwupCnSQpIFpL3+Z4EiOlo/vl13F67gT/mtGVs4ABSt4NDIxCftonM6OggivhYSEcYJHLoADF54OI8c6le6W6vDiGb3TQFTCZfdxdT7XgsduRjtCrTTdMlHvDrh0u/QRsDYiwhjNdL44Ada2m1ImAwE2RnUry/7EV+B5A+iLMlyudVtinxM3w8ZZzlXGMSvhnoWpu5nOCqo033dGrcKwAAdK9lQuFDlEnKlfD2Jb1dCU9umSskkkIuLCkONuHLGBCvfluQweBdc0BYTNLmJZVi1ei+9xUpDf7gwFiJLq8pU7CHhVSy+OecyWEBTQaGyvtP+tJoa5Prbw/vz80JosbL0IBr7R2qBPWyif7Yy3w5L2AttZ6eV5L9YqeLN+OwuY75Z1nhq+XI1EhWdXUkwTwk11NBdUp1xCe1mo3T5/qznxehxCxKRLAvtjx+/3SNiSvgHN1OGeKC0hwfKOviJa80BCz/YBZgCOF01/TqVyQkDNP/mVO+XFzH8fTU4kZe+BURbYiKD7mf4+g9cXdvpD3wX+Br7Fh4uBSwdtdmsEDoekUK0/V1G+QJgfcvDYxJe/hPWqQBOM396XUg3EWWiQsrWA5ROzUQbzBGRrPgT/vl+70304Q
     MINIO_ROOT_PASSWORD: AgCGBthdCUn0QRcTdkrjDqMx4EYgBRbr3FRVPSoTtFinAhoRQX2M4XojvcyMoyXy38chUq364iC4xCyY+H/BGu7M41mPycTrX3WehDDakLJLH+mKLLe4UCZaQQ4BaiDzu8NOo0pdCO/dCv1igjGHQkcacJetKm4XHkdFZ8oaKQM4NqWhH0mlvw+dmUxY7gZNI4mTOII0iZ07lRkj6ix0tMg4zytWIKGr/Ex4adPeAFBIlSxEFWYGb1tssifbA6WTXLvNtF6Jxxm540lltzH7P0rAwHFgpZ+5BeNQt7lJP9mmoGZnp7VPyJuo1rgpN3Akf44B3h1zuGmaKESSfUecJ4aSHKbUoROdVjkXH/TU7Bkb11Cz21Gn1j7GPP2GfkJ+1ZENCajSxpY+HCB+DisbXxVdb3Gn4gBvuvhXd6KHnEMHR/4lRhuzZObSs47cF/8/9JxN3WvqJ3AlylRQtNdoc5qFC0xJ/tp60Ya/LdBd7hu/mlitCWn58EoJe5wy3UYtjSLMKkKBK9uZbYjse+8YyO4HUW2Eo7Qs7vO2dacZSQaXIWVNmArPsKAndsKSuR+bO+frK+w9J16EnEZpJ28UsqSaol4Gpyy549yDOtmJMlTDbUVtpCSpsyBvIkBOlf4t/nIPM1p+wJdKNXecJjIQRv8GZE7dNJd6dROAhlCbe63s1ELnoZTiD9xyYtpLqRhIKc0gdt4T2VsVEGYArzr/97/TuNIl+kJY1D2uOZ48r4tG9w==
+  template:
+    data:
+      rclone.conf: |
+        [minio]
+        type = s3
+        provider = Minio
+        env_auth = false
+        access_key_id = {{ index . "MINIO_ROOT_USER" }}
+        secret_access_key = {{ index . "MINIO_ROOT_PASSWORD" }}
+        region = us-east-1
+        endpoint = http://minio:9000
