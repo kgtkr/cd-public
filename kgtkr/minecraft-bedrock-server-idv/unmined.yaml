@@ -39,7 +39,7 @@ spec:
               image: ghcr.io/kgtkr/unmined-docker:20240229210113704-faaa3c8
               command:
                 - "sh"
-                - "-euc"
+                - "-ec"
                 - |
                   out () {
                     dimension=$1
