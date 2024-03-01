@@ -14,14 +14,14 @@ spec:
             - |
               out () {
                 dimension=$1
-                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out/$dimension --dimension=$dimension -f
+                ./unmined-cli web render --world=/data/worlds/level --output=/unmined-out/$dimension --dimension=$dimension --zoomin=-3 --imageformat=webp $2
                 mv /unmined-out/$dimension/unmined.index.html /unmined-out/$dimension/index.html
               }
               while true; do
                 out overworld
-                out nether
+                out nether "--topY=80"
                 out end
-                sleep 60h
+                sleep 12h
               done
           volumeMounts:
             - mountPath: /data
