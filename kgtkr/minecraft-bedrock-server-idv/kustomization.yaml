@@ -36,7 +36,3 @@ helmCharts:
         metallb.universe.tf/allow-shared-ip: "true"
         metallb.universe.tf/address-pool: public-ips
         external-dns.alpha.kubernetes.io/hostname: mc-idv.kgtkr.net
-configMapGenerator:
-  - name: minio-policy
-    files:
-      - policy.json
