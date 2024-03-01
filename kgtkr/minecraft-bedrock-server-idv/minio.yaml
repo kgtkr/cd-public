@@ -128,7 +128,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
   volumeName: minecraft-bedrock-server-idv-minio
 ---
 apiVersion: bitnami.com/v1alpha1
