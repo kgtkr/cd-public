@@ -101,7 +101,6 @@ spec:
               mkdir -p /data/.minio.sys/buckets/unmined;
               mkdir -p /data/worlds;
               mkdir -p /data/.minio.sys/buckets/worlds;
-              cp -r /policies/* /data/.minio.sys;
               minio server /data --console-address :9001;
         # minioがindex.htmlに対応していないのでnginxを使ってサーブする
         - name: nginx
