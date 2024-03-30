@@ -77,7 +77,7 @@ spec:
         - key: "kubernetes.kgtkr.net/unreliable"
           effect: "NoSchedule"
       containers:
-        - image: uay.io/minio/mc:RELEASE.2024-03-25T16-41-14Z
+        - image: quay.io/minio/mc:RELEASE.2024-03-25T16-41-14Z
           name: app
           resources:
             requests:
