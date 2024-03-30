@@ -88,6 +88,9 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: minio-data
+            - mountPath: /policies/buckets/system
+              name: minio-policy
+              readOnly: true
           envFrom:
             - secretRef:
                 name: minio-secret
