@@ -63,6 +63,39 @@ spec:
   selector:
     app.kubernetes.io/name: minio
 ---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-config
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    spec:
+      tolerations:
+        - key: "kubernetes.kgtkr.net/unreliable"
+          effect: "NoSchedule"
+      containers:
+        - image: uay.io/minio/mc:RELEASE.2024-03-25T16-41-14Z
+          name: app
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "300Mi"
+          envFrom:
+            - secretRef:
+                name: minio-secret
+          command:
+            - /bin/sh
+            - -c
+            - |
+              mc alias set minio http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
+              mc mb -p minio/unmined
+              mc mb -p minio/worlds
+              mc anonymous set public minio/unmined
+      restartPolicy: Never
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -88,27 +121,17 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: minio-data
-            - mountPath: /policies/buckets/unmined
-              name: minio-policy
-              readOnly: true
           envFrom:
             - secretRef:
                 name: minio-secret
           command:
-            - /bin/sh
-            - -c
-            - |
-              mkdir -p /data/unmined;
-              mkdir -p /data/.minio.sys/buckets/unmined;
-              mkdir -p /data/worlds;
-              mkdir -p /data/.minio.sys/buckets/worlds;
-              cp -r /policies/* /data/.minio.sys;
-              minio server /data --console-address :9001;
+            - minio
+            - server
+            - /data
+            - --console-address
+            - ":9001"
       restartPolicy: Always
       volumes:
-        - name: minio-policy
-          configMap:
-            name: minio-policy
         - name: minio-data
           persistentVolumeClaim:
             claimName: minio-data
