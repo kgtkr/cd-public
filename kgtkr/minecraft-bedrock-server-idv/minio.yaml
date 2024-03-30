@@ -81,7 +81,7 @@ spec:
         app.kubernetes.io/name: minio
     spec:
       containers:
-        - image: quay.io/minio/minio:RELEASE.2021-12-29T06-49-06Z
+        - image: quay.io/minio/minio:RELEASE.2024-03-26T22-10-45Z
           name: minio
           resources:
             requests:
