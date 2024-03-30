@@ -8,9 +8,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /unmined/$1
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      try_files $uri $uri/ $uri/index.html;
+      rewrite ^/(.*)\/ /$1/index.html last;
+      rewrite ^/(.*) /unmined/$1 break;
 spec:
   ingressClassName: nginx
   tls:
