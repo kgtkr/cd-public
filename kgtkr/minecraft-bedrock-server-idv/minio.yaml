@@ -9,6 +9,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /unmined/$1
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      try_files $uri $uri/ $uri/index.html;
 spec:
   ingressClassName: nginx
   tls:
