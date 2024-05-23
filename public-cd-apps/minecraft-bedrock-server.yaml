@@ -51,6 +51,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: minecraft-bedrock-server-data
   namespace: minecraft-bedrock-server
+  labels:
+    recurring-job.longhorn.io/source: enabled
+    recurring-job.longhorn.io/backup: enabled
+    recurring-job.longhorn.io/snapshot: enabled
 spec:
   accessModes:
     - ReadWriteOnce
