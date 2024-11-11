@@ -41,6 +41,7 @@ spec:
                 - "sh"
                 - "-ec"
                 - |
+                  sleep infinity
                   out () {
                     dimension=$1
                     ./unmined-cli web render --world=/data/worlds/level --output=/data/unmined/$dimension --dimension=$dimension --zoomin=-3 --imageformat=webp $2
