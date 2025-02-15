@@ -77,7 +77,7 @@ spec:
                   name: minio-secret
                   readOnly: true
           containers:
-            - image: alpine:3.19
+            - image: alpine:3.21
               name: nop
               command:
                 - echo
