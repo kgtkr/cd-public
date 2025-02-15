@@ -76,8 +76,8 @@ spec:
             - -c
             - |
               while true; do
-                cp /data/unmined-web-indexhtml/unmined-web-index.html /data/html/index.html
                 rclone -v sync minio:/unmined /data/html --fast-list
+                cp /data/unmined-web-indexhtml/unmined-web-index.html /data/html/index.html
                 sleep 1h
               done
           volumeMounts:
