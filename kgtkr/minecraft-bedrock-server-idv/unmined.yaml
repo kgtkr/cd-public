@@ -8,6 +8,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            kubectl.kubernetes.io/default-container: unmined
         spec:
           tolerations:
             - key: "kubernetes.kgtkr.net/unreliable"
