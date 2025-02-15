@@ -39,7 +39,7 @@ spec:
                 - mountPath: /data/unmined
                   name: unmined
             - name: unmined
-              image: ghcr.io/kgtkr/unmined-docker:20240229210113704-faaa3c8
+              image: ghcr.io/kgtkr/unmined-docker:20241111085437065-6d893b7
               command:
                 - "sh"
                 - "-ec"
