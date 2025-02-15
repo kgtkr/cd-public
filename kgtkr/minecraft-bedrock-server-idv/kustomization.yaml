@@ -2,6 +2,7 @@ resources:
   - pvc.yaml
   - minio.yaml
   - unmined.yaml
+  - unmined-web.yaml
 patchesStrategicMerge:
   - deployment.yaml
 namespace: minecraft-bedrock-server-idv
@@ -37,3 +38,7 @@ helmCharts:
         metallb.universe.tf/allow-shared-ip: "true"
         metallb.universe.tf/address-pool: public-ips
         external-dns.alpha.kubernetes.io/hostname: mc-idv.kgtkr.net
+configMapGenerator:
+  - name: unmined-web-indexhtml
+    files:
+      - unmined-web-index.html

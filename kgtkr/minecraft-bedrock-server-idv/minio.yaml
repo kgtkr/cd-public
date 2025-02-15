@@ -1,33 +1,6 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: unmined-web
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-    cert-manager.io/cluster-issuer: letsencrypt-issuer
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - mc-idv-unmined.kgtkr.net
-      secretName: unmined-web-ingress-cert
-  rules:
-    - host: mc-idv-unmined.kgtkr.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: minio
-                port:
-                  name: s3
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
   name: minio-console
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 1g
@@ -93,7 +66,6 @@ spec:
               mc alias set minio http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
               mc mb -p minio/unmined
               mc mb -p minio/worlds
-              mc anonymous set public minio/unmined
       restartPolicy: Never
 ---
 apiVersion: apps/v1
