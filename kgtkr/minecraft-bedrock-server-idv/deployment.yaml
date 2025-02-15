@@ -9,6 +9,7 @@ spec:
       annotations:
         kubectl.kubernetes.io/default-container: minecraft-bedrock-server-idv-minecraft-bedrock
     spec:
+      replicas: 0
       containers:
         - image: rclone/rclone:1.65
           name: rclone
