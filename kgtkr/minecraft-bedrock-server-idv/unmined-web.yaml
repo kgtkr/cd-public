@@ -66,7 +66,7 @@ spec:
               mountPath: /usr/share/nginx/html
               readOnly: true
         - name: rclone
-          image: rclone/rclone:1.65
+          image: rclone/rclone:1.69
           resources:
             requests:
               cpu: "10m"
