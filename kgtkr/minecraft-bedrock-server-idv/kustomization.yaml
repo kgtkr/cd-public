@@ -4,6 +4,7 @@ resources:
   - unmined.yaml
 patchesStrategicMerge:
   - deployment.yaml
+namespace: minecraft-bedrock-server-idv
 helmCharts:
   - repo: https://itzg.github.io/minecraft-server-charts/
     name: minecraft-bedrock

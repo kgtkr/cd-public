@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minecraft-bedrock-server-idv-minecraft-bedrock
+  namespace: minecraft-bedrock-server-idv
 spec:
   template:
     metadata:
